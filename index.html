@@ -1,188 +1,76 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beautiful — салон красоты</title>
 
-  <!-- ШРИФТ (чистый, современный, не вырвиглаз) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- ОСНОВНОЙ СТИЛЬ -->
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="light-theme">
+<body class="light">
 
-  <!-- ================= HEADER ================= -->
-  <header class="header">
-    <div class="logo">
-      <span class="logo-star">★</span>
-      <span class="logo-text">Beautiful</span>
+<header class="header">
+  <div class="logo">★ Beautiful</div>
+
+  <button id="themeBtn" class="theme-btn">🌙</button>
+</header>
+
+<section class="hero">
+  <h1>Салон красоты <span>Beautiful</span></h1>
+  <p>Премиальный уход • Дзержинск</p>
+  <button class="btn main-btn">Онлайн запись</button>
+</section>
+
+<section class="services">
+  <h2>Услуги</h2>
+
+  <div class="services-grid">
+    <div class="service" data-service="hair">
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
+      <h3>Парикмахерские</h3>
+      <button class="btn service-btn">Выбрать</button>
     </div>
 
-    <nav class="nav">
-      <a href="#services">Услуги</a>
-      <a href="#booking">Запись</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
-
-    <!-- ПЕРЕКЛЮЧАТЕЛЬ ТЕМ -->
-    <button id="themeToggle" class="theme-toggle" aria-label="Сменить тему">
-      🌙
-    </button>
-  </header>
-
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Салон красоты<br><span>Beautiful</span></h1>
-      <p>
-        Премиальный уход • Современный сервис • Индивидуальный подход
-      </p>
-
-      <a href="#booking" class="btn btn-primary">
-        Онлайн-запись
-      </a>
+    <div class="service" data-service="nails">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
+      <h3>Маникюр</h3>
+      <button class="btn service-btn">Выбрать</button>
     </div>
 
-    <!-- ЗВЕЗДОПАД (ТОЛЬКО В ТЁМНОЙ ТЕМЕ, JS) -->
-    <canvas id="stars"></canvas>
-  </section>
-
-  <!-- ================= SERVICES ================= -->
-  <section id="services" class="services">
-    <h2>Наши услуги</h2>
-
-    <div class="services-grid">
-
-      <!-- УСЛУГА 1 -->
-      <div class="service-card" data-service="hair">
-        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" alt="Парикмахерские услуги">
-        <h3>Парикмахерские услуги</h3>
-        <p>Стрижки, окрашивание, уход</p>
-        <button class="btn btn-outline">Записаться</button>
-      </div>
-
-      <!-- УСЛУГА 2 -->
-      <div class="service-card" data-service="nails">
-        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371" alt="Маникюр">
-        <h3>Маникюр и педикюр</h3>
-        <p>Идеальная форма и стиль</p>
-        <button class="btn btn-outline">Записаться</button>
-      </div>
-
-      <!-- УСЛУГА 3 -->
-      <div class="service-card" data-service="cosmetology">
-        <img src="https://images.unsplash.com/photo-1595475884562-073c30d45670" alt="Косметология">
-        <h3>Косметология</h3>
-        <p>Уход за кожей и омоложение</p>
-        <button class="btn btn-outline">Записаться</button>
-      </div>
-
+    <div class="service" data-service="cosmo">
+      <img src="https://images.unsplash.com/photo-1595475884562-073c30d45670">
+      <h3>Косметология</h3>
+      <button class="btn service-btn">Выбрать</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= BOOKING / CALENDAR ================= -->
-  <section id="booking" class="booking">
-    <h2>Онлайн-запись</h2>
-    <p class="booking-subtitle">
-      Выберите услугу и удобную дату. Мы работаем пн–пт с 9:00 до 20:00
-    </p>
+<section class="calendar">
+  <h2 id="calendarTitle">Выберите услугу</h2>
+  <div id="calendarGrid" class="calendar-grid"></div>
+</section>
 
-    <!-- КАЛЕНДАРЬ (JS будет подставлять данные) -->
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button id="prevMonth">‹</button>
-        <h3 id="calendarMonth">Месяц</h3>
-        <button id="nextMonth">›</button>
-      </div>
+<section class="reviews">
+  <h2>Отзывы</h2>
 
-      <div class="calendar-grid" id="calendarGrid">
-        <!-- Дни недели -->
-        <div class="day-name">Пн</div>
-        <div class="day-name">Вт</div>
-        <div class="day-name">Ср</div>
-        <div class="day-name">Чт</div>
-        <div class="day-name">Пт</div>
-        <div class="day-name">Сб</div>
-        <div class="day-name">Вс</div>
+  <div id="reviewsList" class="reviews-list"></div>
 
-        <!-- ДАТЫ (JS) -->
-      </div>
-    </div>
+  <form id="reviewForm">
+    <input type="text" id="name" placeholder="Имя" required>
+    <textarea id="text" placeholder="Отзыв" required></textarea>
+    <button class="btn">Отправить</button>
+  </form>
+</section>
 
-    <!-- YCLIENTS -->
-    <a
-      href="https://yclients.com"
-      target="_blank"
-      class="btn btn-primary btn-white"
-    >
-      Записаться через YCLIENTS
-    </a>
-  </section>
+<footer class="footer">
+  Дзержинск, ул. Ленина 67
+</footer>
 
-  <!-- ================= REVIEWS ================= -->
-  <section id="reviews" class="reviews">
-    <h2>Отзывы клиентов</h2>
-
-    <div class="reviews-grid">
-
-      <div class="review-card">
-        <p>
-          “Лучший салон в Дзержинске! Атмосфера, сервис и результат — на высоте.”
-        </p>
-        <span>— Анна</span>
-      </div>
-
-      <div class="review-card">
-        <p>
-          “Очень приятный персонал и шикарный результат. Вернусь обязательно.”
-        </p>
-        <span>— Екатерина</span>
-      </div>
-
-      <div class="review-card">
-        <p>
-          “Современно, красиво и профессионально. Рекомендую!”
-        </p>
-        <span>— Мария</span>
-      </div>
-
-    </div>
-
-    <!-- ФОРМА ДОБАВЛЕНИЯ ОТЗЫВА -->
-    <form class="review-form">
-      <input type="text" placeholder="Ваше имя" required>
-      <textarea placeholder="Ваш отзыв" required></textarea>
-      <button class="btn btn-primary">Оставить отзыв</button>
-    </form>
-  </section>
-
-  <!-- ================= CONTACTS ================= -->
-  <section id="contacts" class="contacts">
-    <h2>Контакты</h2>
-
-    <p>
-      📍 Дзержинск, ул. Ленина 67
-    </p>
-
-    <div class="socials">
-      <a href="#" class="social tg">Telegram</a>
-      <a href="#" class="social vk">VK</a>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <p>© 2026 Beautiful. Все права защищены.</p>
-  </footer>
-
-  <!-- ОСНОВНОЙ JS -->
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
