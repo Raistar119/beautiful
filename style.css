@@ -1,188 +1,108 @@
-:root{
-  --bg:#f3f4f7;
-  --text:#1a1a1a;
-  --card:#ffffff;
-  --free:#dbf5e6;
-  --busy:#f8d7da;
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-body.dark{
-  --bg:radial-gradient(circle at top,#1c1f3a,#0d0f1c);
-  --text:#eaeaf0;
-  --card:#15172a;
-  --free:#1f6f4a;
-  --busy:#6f1e2e;
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #111;
 }
 
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  transition:background 1s,color 1s;
+.header {
+  background: white;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* CANVAS */
-#stars{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  display:none;
-}
-body.dark #stars{display:block}
-
-.wrap{max-width:1200px;margin:auto;padding:0 20px}
-h1,h2{font-family:Playfair Display}
-
-/* HEADER */
-.header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  backdrop-filter:blur(14px);
-  background:rgba(255,255,255,.6);
-}
-body.dark .header{background:rgba(10,12,30,.6)}
-
-.header-inner{
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.header a {
+  margin-left: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
 }
 
-.logo{font-weight:500}
-
-.nav a{
-  margin-left:20px;
-  text-decoration:none;
-  color:inherit;
+.hero {
+  padding: 60px 20px;
+  text-align: center;
 }
 
-.controls{
-  display:flex;
-  gap:12px;
+.services {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-#themeToggle,#burger{
-  background:none;
-  border:none;
-  font-size:22px;
-  cursor:pointer;
+.service-card {
+  background: white;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-#burger{display:none}
-
-/* HERO */
-.hero{padding:120px 0}
-.hero-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-.hero h1{font-size:60px}
-.hero img{
-  width:100%;
-  border-radius:24px;
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.cta{
-  margin-top:30px;
-  padding:16px 40px;
-  background:white;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
+.booking {
+  background: white;
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* SERVICES */
-.services{padding:100px 0}
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:30px;
-}
-.service-card{
-  background:var(--card);
-  padding:30px;
-  border-radius:24px;
-  cursor:pointer;
-  transition:.4s;
-}
-.service-card:hover{transform:translateY(-6px)}
-
-/* BOOKING */
-.booking{padding:100px 0}
-.calendar{
-  background:var(--card);
-  padding:20px;
-  border-radius:24px;
+.hidden {
+  display: none;
 }
 
-.calendar-days,.calendar-times{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  margin-bottom:20px;
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 20px 0;
 }
 
-.day{
-  width:48px;
-  padding:12px 0;
-  text-align:center;
-  border-radius:12px;
-  cursor:pointer;
-}
-.day.free{background:var(--free)}
-.day.busy{background:var(--busy)}
-
-.time{
-  width:70px;
-  padding:10px 0;
-  text-align:center;
-  border-radius:12px;
-  background:#eaeaea;
-}
-.time.busy{opacity:.3}
-body.dark .time{background:#2a2d45}
-
-/* CONTACTS & FOOTER */
-.contacts{padding:80px 0}
-.footer{
-  padding:60px 0;
-  text-align:center;
-  opacity:.7;
+.day {
+  padding: 12px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  text-align: center;
 }
 
-/* MOBILE */
-@media(max-width:900px){
-  .hero-grid,.services-grid{grid-template-columns:1fr}
-  .hero{text-align:center}
-  .hero h1{font-size:42px}
+.day.free {
+  background: #d1f7d6;
+}
 
-  .nav{
-    position:fixed;
-    inset:0;
-    background:var(--bg);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:30px;
-    transform:translateX(100%);
-    transition:.4s;
-    pointer-events:none;
-    z-index:999;
-  }
-  .nav.open{
-    transform:translateX(0);
-    pointer-events:auto;
-  }
+.day.busy {
+  background: #ffd6d6;
+}
 
-  #burger{display:block;z-index:1001}
+.reviews {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.review {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
 }
