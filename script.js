@@ -1,75 +1,108 @@
-// THEME
-const themeToggle = document.getElementById('themeToggle');
-themeToggle.onclick = () => {
-  document.body.classList.toggle('dark');
-};
-
-// MENU
-const burger = document.getElementById('burger');
-const nav = document.getElementById('nav');
-
-burger.onclick = () => nav.classList.toggle('open');
-nav.querySelectorAll('a').forEach(a=>{
-  a.onclick=()=>nav.classList.remove('open');
-});
-
-// SCROLL
-function scrollToBooking(){
-  document.getElementById('booking')
-    .scrollIntoView({behavior:'smooth'});
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-// CALENDAR
-const daysEl=document.getElementById('days');
-const timesEl=document.getElementById('times');
-
-const now=new Date();
-const daysInMonth=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-
-for(let i=1;i<=daysInMonth;i++){
-  const free=Math.random()>.4;
-  const d=document.createElement('div');
-  d.className='day '+(free?'free':'busy');
-  d.textContent=i;
-  d.onclick=()=>showTimes(free);
-  daysEl.appendChild(d);
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #111;
 }
 
-function showTimes(free){
-  timesEl.innerHTML='';
-  ['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00']
-    .forEach(t=>{
-      const el=document.createElement('div');
-      el.className='time'+(free&&Math.random()>.5?'':' busy');
-      el.textContent=t;
-      timesEl.appendChild(el);
-    });
+.header {
+  background: white;
+  padding: 16px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-// STARS
-const c=document.getElementById('stars');
-const ctx=c.getContext('2d');
-c.width=innerWidth;
-c.height=innerHeight;
+.header a {
+  margin-left: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
 
-let stars=[...Array(180)].map(()=>({
-  x:Math.random()*c.width,
-  y:Math.random()*c.height,
-  r:Math.random()*1.2+.3,
-  s:Math.random()*.4+.2
-}));
+.hero {
+  padding: 60px 20px;
+  text-align: center;
+}
 
-(function animate(){
-  ctx.clearRect(0,0,c.width,c.height);
-  if(document.body.classList.contains('dark')){
-    stars.forEach(s=>{
-      ctx.fillStyle='rgba(255,255,255,.8)';
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fill();
-      s.y+=s.s;
-      if(s.y>c.height)s.y=0;
-    });
-  }
-  requestAnimationFrame(animate);
-})();
+.services {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.service-card {
+  background: white;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.booking {
+  background: white;
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.hidden {
+  display: none;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.day {
+  padding: 12px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.day.free {
+  background: #d1f7d6;
+}
+
+.day.busy {
+  background: #ffd6d6;
+}
+
+.reviews {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.review {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
