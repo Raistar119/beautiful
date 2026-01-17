@@ -1,81 +1,61 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beautiful — Beauty Studio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beautiful — салон красоты</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-<canvas id="stars"></canvas>
-
 <header class="header">
-  <div class="wrap header-inner">
-    <div class="logo">★ Beautiful</div>
-
-    <nav class="nav" id="nav">
-      <a href="#services">Услуги</a>
-      <a href="#booking">Запись</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
-
-    <div class="controls">
-      <button id="themeToggle">◐</button>
-      <button id="burger">☰</button>
-    </div>
-  </div>
+  <h1>Beautiful</h1>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#booking">Запись</a>
+    <a href="#reviews">Отзывы</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Beauty Studio</h1>
-      <p>Дзержинск · ул. Ленина 67</p>
-      <button class="cta" onclick="scrollToBooking()">Онлайн-запись</button>
-    </div>
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80">
-  </div>
+  <h2>Салон красоты нового поколения</h2>
+  <p>Дзержинск · ул. Ленина 67 · Пн–Пт 9:00–20:00</p>
 </section>
 
 <section id="services" class="services">
-  <div class="wrap">
-    <h2>Услуги</h2>
-    <div class="services-grid">
-      <div class="service-card" onclick="scrollToBooking()">Волосы</div>
-      <div class="service-card" onclick="scrollToBooking()">Ногти</div>
-      <div class="service-card" onclick="scrollToBooking()">Ресницы</div>
-    </div>
+  <h2>Наши услуги</h2>
+
+  <div class="service-card" onclick="openBooking('nails')">
+    💅 Маникюр и ногти
+  </div>
+
+  <div class="service-card" onclick="openBooking('hair')">
+    💇 Волосы и укладка
+  </div>
+
+  <div class="service-card" onclick="openBooking('makeup')">
+    💄 Макияж
   </div>
 </section>
 
-<section id="booking" class="booking">
-  <div class="wrap">
-    <h2>Онлайн-запись</h2>
-    <p class="muted">Пн–Пт · 09:00–20:00</p>
-
-    <div class="calendar">
-      <div class="calendar-days" id="days"></div>
-      <div class="calendar-times" id="times"></div>
-    </div>
-  </div>
+<section id="booking" class="booking hidden">
+  <h2 id="booking-title"></h2>
+  <div class="calendar" id="calendar"></div>
+  <button onclick="closeBooking()">Закрыть</button>
 </section>
 
-<section id="contacts" class="contacts">
-  <div class="wrap">
-    <h2>Контакты</h2>
-    <p>Дзержинск, ул. Ленина 67</p>
-    <p>Telegram · VK</p>
-  </div>
+<section id="reviews" class="reviews">
+  <h2>Отзывы клиентов</h2>
+  <div class="review">«Очень красиво и дорого выглядит» — Алина</div>
+  <div class="review">«Уровень Москвы» — Мария</div>
+  <div class="review">«Хочется возвращаться» — Екатерина</div>
 </section>
 
-<footer class="footer">
-  © Beautiful Studio
+<footer>
+  © Beautiful · Дзержинск
 </footer>
 
-<script src="script.js"></script>
+<script src="js/booking.js"></script>
 </body>
 </html>
+    
